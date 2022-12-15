@@ -5,7 +5,8 @@ body{
     background-image: url(/resources/jukebox.gif);
   
 }
-.animated-button {
+
+#image {
     background-color: #4CAF50; /* Green background */
     border: none; /* Remove border */
     color: white; /* White text */
