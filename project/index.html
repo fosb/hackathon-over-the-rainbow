@@ -32,9 +32,10 @@
    * https://developers.google.com/explorer-help/code-samples#javascript
    */
 
+   let counter = 0;
   
   function loadClient() {
-    gapi.client.setApiKey("AIzaSyD-xIY9sIu8-HWziipaqOEzUQa6GD4mjXQ");
+    gapi.client.setApiKey("AIzaSyCsFTWjaf0Zf_g_e8PXgjdh7xQr-6-8AsE");
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
@@ -43,13 +44,15 @@
   function execute() {
     return gapi.client.youtube.search.list({
         q: 'over the rainbow',
-        part: 'snippet'
+        part: 'snippet',
+        maxResults: 50
     })
         .then(function(response) {
                 console.log(response.result);
                 let random = Math.floor(Math.random()*response.result.items.length);
                 // Handle the results here (response.result has the parsed body).
-                document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + response.result.items[random].id.videoId;
+                document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + response.result.items[counter].id.videoId;
+                counter++;
               },
               function(err) { console.error("Execute error", err); });
   }
