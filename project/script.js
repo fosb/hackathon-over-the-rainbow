@@ -8,7 +8,6 @@ const songlist = [
 
 
 document.getElementById("change-video").addEventListener("click", function() {
-    let random = Math.floor(Math.random()*songlist.length)
-    console.log(songlist[random]);
+        
     document.getElementById('ytVideo').src = songlist[random];
  });

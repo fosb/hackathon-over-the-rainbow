@@ -16,17 +16,54 @@
 </head>
 <body>
 
-    <div class="random">
-         <h1 class="firstline" id="firstline">The Random Rainbow</h1>
-        <iframe id="ytVideo" width="420" height="315"
-            src="https://www.youtube.com/embed/oW2QZ7KuaxA">
-        </iframe>
+<h1 class="firstline" id="firstline">The Random</h1>
+<iframe id="ytVideo" width="420" height="315"
+    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+</iframe>
+<div>
+    <button id="change-video"><img src="./resources/button.png" /></button>
+    <button id="search-button">Search for rainbows</button>
+</div>
+<div>
+    <script src="https://apis.google.com/js/api.js"></script>
+<script>
+  /**
+   * Sample JavaScript code for youtube.search.list
+   * See instructions for running APIs Explorer code samples locally:
+   * https://developers.google.com/explorer-help/code-samples#javascript
+   */
 
-        <div>
-            <button id="change-video" type="button">Gimme Another Rainbow</button>
-        </div>
-
-    </div>
+   let counter = 0;
+  
+  function loadClient() {
+    gapi.client.setApiKey("AIzaSyCsFTWjaf0Zf_g_e8PXgjdh7xQr-6-8AsE");
+    return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function execute() {
+    return gapi.client.youtube.search.list({
+        q: 'over the rainbow',
+        part: 'snippet',
+        maxResults: 50
+    })
+        .then(function(response) {
+                console.log(response.result);
+                let random = Math.floor(Math.random()*response.result.items.length);
+                // Handle the results here (response.result has the parsed body).
+                document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + response.result.items[counter].id.videoId;
+                counter++;
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
+  });
+</script>
+<button onclick="loadClient()">Load API</button>
+<button onclick="execute()">execute</button>
+</div>
 
 </body>
 </html>
