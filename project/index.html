@@ -41,10 +41,15 @@
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
   function execute() {
-    return gapi.client.youtube.search.list({})
+    return gapi.client.youtube.search.list({
+        q: 'over the rainbow',
+        part: 'snippet'
+    })
         .then(function(response) {
+                console.log(response.result);
+                let random = Math.floor(Math.random()*response.result.items.length);
                 // Handle the results here (response.result has the parsed body).
-                document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + response.result.items[0].id.videoId;
+                document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + response.result.items[random].id.videoId;
               },
               function(err) { console.error("Execute error", err); });
   }
@@ -52,7 +57,7 @@
     gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
   });
 </script>
-<button onclick="loadClient()">authorize and load</button>
+<button onclick="loadClient()">Load API</button>
 <button onclick="execute()">execute</button>
 </div>
 
