@@ -1,0 +1,30 @@
+/* Add styles for the button */
+body{
+    display: flex;
+}
+.animated-button {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove border */
+    color: white; /* White text */
+    padding: 15px 32px; /* Some padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the button inline */
+    font-size: 16px; /* Set font size */
+    margin: 4px 2px; /* Add some margin */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    -webkit-transition-duration: 0.4s; /* Animation duration */
+    transition-duration: 0.4s; /* Animation duration */
+  }
+
+  /* Add styles for the hover effect */
+  .animated-button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); /* Add a shadow on hover */
+  }
+
+  /* Add styles for the active state */
+  .animated-button:active {
+    background-color: #3e8e41; /* Darker background on press */
+    box-shadow: 0 5px #666; /* Add a smaller shadow on press */
+    transform: translateY(4px); /* Push the button down slightly */
+  }
