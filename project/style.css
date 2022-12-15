@@ -1,8 +1,11 @@
 /* Add styles for the button */
 body{
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.animated-button {
+
+#image {
     background-color: #4CAF50; /* Green background */
     border: none; /* Remove border */
     color: white; /* White text */
