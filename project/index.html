@@ -34,6 +34,7 @@
    */
 
    let counter = 0;
+   let query;
 
    let resultArray = [];
     //console.log(resultArray);
@@ -46,7 +47,7 @@
   // Make sure the client is loaded and sign-in is complete before calling this method.
   function execute() {
     return gapi.client.youtube.search.list({
-        q: 'over the rainbow',
+        q: query,
         part: 'snippet',
         maxResults: 50
     })
@@ -64,7 +65,16 @@
     document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + resultArray[counter].id.videoId;
     counter++;
  }
+
+ function setQuery(){
+    query = document.getElementById('ytQuery').value;
+    console.log(query);
+ }
 </script>
+<form>
+    <input type="text" name="ytQuery" id="ytQuery"><br>
+    <input type="button" onclick="setQuery()" value="Submit">
+</form>
 <button onclick="loadClient()">Load API</button>
 <button onclick="execute()">execute</button>
 <button onclick="nextSong()">next song</button>
