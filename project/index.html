@@ -42,10 +42,7 @@
     gapi.client.setApiKey("AIzaSyCsFTWjaf0Zf_g_e8PXgjdh7xQr-6-8AsE");
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
-              function(err) { console.error("Error loading GAPI client for API", err); });
-  }
-  // Make sure the client is loaded and sign-in is complete before calling this method.
-  function execute() {
+              function(err) { console.error("Error loading GAPI client for API", err); }).then (function execute() {
     return gapi.client.youtube.search.list({
         q: query,
         part: 'snippet',
@@ -56,10 +53,14 @@
                 console.log(resultArray);
               },
               function(err) { console.error("Execute error", err); });
+  })
+  
   }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
   });
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  
 
  function nextSong(){
     document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + resultArray[counter].id.videoId;
@@ -70,13 +71,13 @@
     query = document.getElementById('ytQuery').value;
     console.log(query);
  }
+
 </script>
 <form>
     <input type="text" name="ytQuery" id="ytQuery"><br>
     <input type="button" onclick="setQuery()" value="Submit">
 </form>
-<button onclick="loadClient()">Load API</button>
-<button onclick="execute()">execute</button>
+<button onclick="loadClient()">Load</button>
 <button onclick="nextSong()">next song</button>
 </div>
 
