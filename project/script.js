@@ -3,10 +3,12 @@ const songlist = [
     'https://www.youtube.com/embed/XW5nIlIfR5s',
     'https://www.youtube.com/embed/V1bFr2SWP1I',
     'https://www.youtube.com/embed/iwlFTYT2Fdw',
+    'https://www.youtube.com/embed/oW2QZ7KuaxA'
 ]
 
 
 document.getElementById("change-video").addEventListener("click", function() {
     let random = Math.floor(Math.random()*songlist.length)
+    console.log(songlist[random]);
     document.getElementById('ytVideo').src = songlist[random];
  });
