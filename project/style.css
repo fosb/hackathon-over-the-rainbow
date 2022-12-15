@@ -1,6 +1,9 @@
 /* Add styles for the button */
 body{
     display: flex;
+    background-size: cover;
+    background-image: url(/resources/jukebox.gif);
+  
 }
 .animated-button {
     background-color: #4CAF50; /* Green background */
