@@ -36,15 +36,20 @@
    let counter = 0;
 
    let resultArray = [];
-    //console.log(resultArray);
-  function loadClient() {
-    gapi.client.setApiKey("AIzaSyCsFTWjaf0Zf_g_e8PXgjdh7xQr-6-8AsE");
+
+
+    
+ function loadClient() {
+    gapi.client.setApiKey("AIzaSyCsFTWjaf0Zf_g_e8PXgjdh7xQr-6-8AsE")
+
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
-              function(err) { console.error("Error loading GAPI client for API", err); });
-  }
-  // Make sure the client is loaded and sign-in is complete before calling this method.
-  function execute() {
+              function(err) { console.error("Error loading GAPI client for API", err);}
+              )        
+  };
+
+    // Make sure the client is loaded and sign-in is complete before calling this method.
+ function execute() {
     return gapi.client.youtube.search.list({
         q: 'over the rainbow',
         part: 'snippet',
@@ -55,17 +60,28 @@
                 console.log(resultArray);
               },
               function(err) { console.error("Execute error", err); });
-  }
+              
+            };
+
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
   });
 
+  function test(){
+    loadClient(),
+    execute();
+  }
+              
+  
  function nextSong(){
+    //while(counter < resultArray.length -1){
     document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + resultArray[counter].id.videoId;
     counter++;
+    //}
  }
+
 </script>
-<button onclick="loadClient()">Load API</button>
+<input id="loader" type = button value="Load Api" onclick="test();"/>
 <button onclick="execute()">execute</button>
 <button onclick="nextSong()">next song</button>
 </div>
