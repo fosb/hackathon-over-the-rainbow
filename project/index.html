@@ -66,14 +66,7 @@
     gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
   });
   // Make sure the client is loaded and sign-in is complete before calling this method.
-  
-
-  function test(){
-    loadClient(),
-    execute();
-  }
-              
-  
+            
  function nextSong(){
     //while(counter < resultArray.length -1){
     document.getElementById("ytVideo").src= "https://www.youtube.com/embed/" + resultArray[counter].id.videoId;
