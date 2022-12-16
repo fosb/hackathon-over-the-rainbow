@@ -13,11 +13,7 @@ body{
   background-image: url('https://static.wixstatic.com/media/ffff5f_cdad9b6a1251415bb15e43290261be45~mv2.gif'); 
   
 }  
-.card-video{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 #title{
   font-family: 'Rubik Distressed', cursive;
   display: flex;
