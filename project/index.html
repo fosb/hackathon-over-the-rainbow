@@ -34,6 +34,7 @@
    */
 
    let counter = 0;
+   let query;
 
    let resultArray = [];
 
@@ -44,14 +45,9 @@
 
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
-              function(err) { console.error("Error loading GAPI client for API", err);}
-              )        
-  };
-
-    // Make sure the client is loaded and sign-in is complete before calling this method.
- function execute() {
+              function(err) { console.error("Error loading GAPI client for API", err); }).then (function execute() {
     return gapi.client.youtube.search.list({
-        q: 'over the rainbow',
+        q: query,
         part: 'snippet',
         maxResults: 50
     })
@@ -60,12 +56,17 @@
                 console.log(resultArray);
               },
               function(err) { console.error("Execute error", err); });
-              
-            };
-
+  }).then (function setQuery(){
+    query = document.getElementById('ytQuery').value;
+    console.log(query);
+ })
+  
+  };
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
   });
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  
 
   function test(){
     loadClient(),
@@ -80,9 +81,13 @@
     //}
  }
 
+ 
+
 </script>
-<input id="loader" type = button value="Load Api" onclick="test();"/>
-<button onclick="execute()">execute</button>
+<form>
+    <input type="text" name="ytQuery" id="ytQuery"><br>
+</form>
+<button onclick="loadClient()">Load</button>
 <button onclick="nextSong()">next song</button>
 </div>
 
