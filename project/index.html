@@ -53,9 +53,12 @@
                 console.log(resultArray);
               },
               function(err) { console.error("Execute error", err); });
-  })
+  }).then (function setQuery(){
+    query = document.getElementById('ytQuery').value;
+    console.log(query);
+ })
   
-  }
+  };
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
   });
@@ -67,15 +70,11 @@
     counter++;
  }
 
- function setQuery(){
-    query = document.getElementById('ytQuery').value;
-    console.log(query);
- }
+ 
 
 </script>
 <form>
     <input type="text" name="ytQuery" id="ytQuery"><br>
-    <input type="button" onclick="setQuery()" value="Submit">
 </form>
 <button onclick="loadClient()">Load</button>
 <button onclick="nextSong()">next song</button>
